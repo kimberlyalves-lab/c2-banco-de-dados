@@ -2,7 +2,7 @@ from conexion.mysql_queries import MySQLQueries
 
 class SplashScreen:
     def mostrar(self):
-        # Layout inicial baseado no modelo oficial
+        
         print("#" * 65)
         print("#              SISTEMA DE ACESSIBILIDADE E RECURSOS             #")
         print("#                                                               #")
@@ -22,7 +22,6 @@ class SplashScreen:
             total_locais = lin_l[0]['total'] if lin_l else 0
             total_recursos = lin_r[0]['total'] if lin_r else 0
             
-            # Mantida exatamente a sua parte solicitada
             print(f"\n📊 [STATUS DO SISTEMA]")
             print(f"   -> {total_locais} locais mapeados no banco.")
             print(f"   -> {total_recursos} recursos de acessibilidade cadastrados.")
