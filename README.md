@@ -2,7 +2,7 @@
 
 Este projeto foi desenvolvido como parte da disciplina de Banco de Dados. O objetivo da aplicação é simular a interface entre uma linguagem de programação e o banco de dados MySQL, permitindo gerenciar locais e seus respectivos recursos de acessibilidade de forma eficiente.
 
-## 👥 Integrantes do Grupo
+## Integrantes do Grupo
 * Kimberly Alves dos Santos - 25110020
 
 **Professor:** Howard Roatti  
@@ -11,14 +11,14 @@ Este projeto foi desenvolvido como parte da disciplina de Banco de Dados. O obje
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 * **Banco de Dados:** MySQL 8.0 (Engine InnoDB)
 * **Modelagem:** MySQL Workbench
 * **Linguagem de Programação:** Python
 
 ---
 
-## 🎲 Estrutura do Banco de Dados (Etapa 1)
+## Estrutura do Banco de Dados 
 
 O banco de dados `acessibilidade` é composto por duas tabelas principais relacionadas de forma não-identificadora, garantindo a integridade referencial:
 
@@ -29,7 +29,7 @@ O script inclui uma restrição do tipo `CHECK` (`chk_situacao`) para garantir q
 
 ---
 
-## 🚀 Como Executar o Script de Banco de Dados
+## Como Executar o Script de Banco de Dados
 
 ### Configurar o Banco de Dados
 Acesse o seu ambiente MySQL Workbench ou terminal MySQL e execute o script disponível na raiz do projeto:
