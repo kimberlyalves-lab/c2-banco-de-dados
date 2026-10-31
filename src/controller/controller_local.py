@@ -24,31 +24,34 @@ class ControllerLocal:
             for r in linhas_brutas:
                 if isinstance(r, dict):
                     linhas_formatadas.append((r['id_local'], r['nome'], r['tipo'], r['endereco'], r['cidade']))
-                elif isinstance(r, (list, tuple)) and len(r) >= 5:
-                    linhas_formatadas.append((r[0], r[1], r[2], r[3], r[4]))
                 else:
-                    linhas_formatadas.append((r, r, r, r, r))
+                    linhas_formatadas.append(r)
         return colunas, linhas_formatadas
     
-        @staticmethod  
-        def possui_filhos(id_local):
-         """Verifica se existem recursos vinculados a este local antes de excluir"""
+    @staticmethod  
+    def possui_filhos(id_local):
+        """Verifica se existem recursos vinculados a este local antes de excluir"""
         linhas = executar("SELECT COUNT(*) AS total FROM recursos WHERE id_local = %s", (id_local,), fetch=True)
-        if linhas and len(linhas) > 0:
-            # 💡 Correção: Extrai o primeiro dicionário da lista de resultados [0]
-            return linhas[0]['total'] > 0
+        if linhas:
+            # Como a resposta vem em uma lista de dicionários ou dicionário direto
+            r = linhas[0] if isinstance(linhas, list) else linhas
+            if isinstance(r, dict):
+                return r['total'] > 0
+            elif isinstance(r, (list, tuple)):
+                return r[0] > 0
         return False
 
     @staticmethod
     def buscar(id_local): 
         """Busca um local específico pelo ID e converte em objeto Local para o principal.py"""
         rows = executar("SELECT id_local, nome, tipo, endereco, cidade FROM locais WHERE id_local = %s", (id_local,), True)
-        if rows and len(rows) > 0:
-            # 💡 Correção: Extrai o primeiro dicionário da lista de resultados [0]
-            r = rows[0]
-            return Local(id_local=r['id_local'], nome=r['nome'], tipo=r['tipo'], endereco=r['endereco'], cidade=r['cidade'])
+        if rows:
+            r = rows[0] if isinstance(rows, list) else rows
+            if isinstance(r, dict):
+                return Local(id_local=r['id_local'], nome=r['nome'], tipo=r['tipo'], endereco=r['endereco'], cidade=r['cidade'])
+            else:
+                return Local(id_local=r[0], nome=r[1], tipo=r[2], endereco=r[3], cidade=r[4])
         return None
-
 
     @staticmethod
     def inserir(local):
